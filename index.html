@@ -126,13 +126,10 @@ a{text-decoration:none}
 .article-tech{padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:var(--white);margin-top:12px}
 .article-tech strong{color:var(--green-900)}
 .match-grid{display:grid;gap:14px}
-.match-row{display:grid;grid-template-columns:1fr 1.05fr auto;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--white)}
+.match-row{display:grid;grid-template-columns:1fr 1.05fr;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--white)}
 .match-tech{padding:12px 14px;border-radius:12px;background:var(--green-050);border:1px solid var(--green-100);font-weight:700;color:var(--green-900)}
 .match-row select{width:100%}
-.help-btn{width:42px;height:42px;border-radius:999px;border:1px solid var(--gold-200);background:var(--gold-100);cursor:pointer;font-weight:800;color:var(--green-900)}
-.help-btn:hover{background:var(--gold-200)}
-.translation{display:none;grid-column:1 / -1;padding:12px 14px;border-radius:12px;background:#fffcf6;border:1px dashed var(--gold-200);color:#67522b;font-size:.94rem}
-.translation.show{display:block}
+
 .feedback{margin-top:14px;padding:12px 14px;border-radius:12px;display:none}
 .feedback.show{display:block}
 .feedback.ok{background:var(--success-bg);color:var(--success);border:1px solid #cfe7d1}
@@ -503,31 +500,26 @@ const TECHNIQUES = [
     id:'t1',
     name:'Ask before you speak',
     answer:'The advisor asks questions before showing a perfume.',
-    fr:'La conseillère pose des questions avant de montrer un parfum.'
   },
   {
     id:'t2',
     name:'Reformulate',
     answer:'The advisor repeats the client’s need in different words to show understanding.',
-    fr:'La conseillère reformule le besoin de la cliente avec d’autres mots.'
   },
   {
     id:'t3',
     name:'Make them smell, not think',
     answer:'The advisor describes the perfume with sensory images and feelings.',
-    fr:'La conseillère décrit le parfum avec des images sensorielles et des sensations.'
   },
   {
     id:'t4',
     name:'Handle objections',
     answer:'The advisor responds to hesitation with a solution, not pressure.',
-    fr:'La conseillère répond à l’hésitation avec une solution, sans mettre de pression.'
   },
   {
     id:'t5',
     name:'Build a relationship',
     answer:'The advisor creates trust so the client feels welcomed and returns.',
-    fr:'La conseillère crée une relation de confiance pour que la cliente se sente bien accueillie.'
   }
 ];
 
@@ -621,16 +613,13 @@ function buildMatchPhase(){
             ${localOptions.map(option => `<option value="${escapeHtml(option.answer)}">${escapeHtml(option.answer)}</option>`).join('')}
           </select>
         </div>
-        <button class="help-btn" type="button" onclick="toggleTranslation('${tech.id}')">🌐</button>
-        <div class="translation" id="trans_${tech.id}"><strong>French help:</strong> ${tech.fr}</div>
+        
       </div>
     `;
   }).join('');
 }
 
-function toggleTranslation(id){
-  document.getElementById('trans_' + id).classList.toggle('show');
-}
+
 
 function checkMatching(){
   let score = 0;
